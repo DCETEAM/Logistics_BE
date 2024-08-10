@@ -51,8 +51,35 @@ def movement_update_data():
         data = request.get_json()
         update_query = "UPDATE movement SET "
         update_fields = []
-
-        if 'transporterid' in data:
+        select_query = "SELECT * FROM localbill ORDER BY date1"
+        connection = mysql.connector.connect(**db_config)
+        cursor = connection.cursor(dictionary=True)
+        
+        if data['truckMovementNo'] != "0" and data['truckMovementNo'] != None and data['truckMovementNo'] != "":
+            check_duplicate="SELECT * FROM movement WHERE  truckMovementNo=%s and invoiceNumber != %s"
+            cursor.execute(check_duplicate,tuple([data['truckMovementNo'],data['invoiceNumber']]))   
+            result = cursor.fetchall()    
+                        
+            if len(result):                
+                return jsonify({"message":"Truck Memo number is duplicate"})
+        if data['acknowledgementNo'] != "0" and data['acknowledgementNo'] != None and data['acknowledgementNo'] != "":
+            check_duplicate="SELECT * FROM movement WHERE  acknowledgementNo=%s and invoiceNumber != %s"
+            cursor.execute(check_duplicate,tuple([data['acknowledgementNo'],data['invoiceNumber']]))
+            result = cursor.fetchall()
+                         
+            if len(result):
+                print("2")
+                return jsonify({"message":"Acknowledgement number is duplicate"})   
+        print("utr",data['utrNo'])
+        if data['utrNo'] != "0" and data['utrNo'] != None and data['utrNo'] != "":     
+            check_duplicate="SELECT * FROM movement WHERE utrNo=%s and invoiceNumber != %s"     
+            cursor.execute(check_duplicate,tuple([data['utrNo'],data['invoiceNumber']]))
+            result = cursor.fetchall()   
+            print("u",len(result))            
+            if len(result):
+                print("3")
+                return jsonify({"message":"UTR number is duplicate"})             
+        if 'transporterid' in data:            
             transporterid = get_transporter_id(data['transporter'])
             update_query += "transporter = %s, "
             update_fields.append(transporterid)
@@ -138,6 +165,51 @@ def movement_update_data():
         if 'ownername' in data:
             update_query += "ownername = %s, "
             update_fields.append(data['ownername'])
+            
+        if 'coolieRadio' in data:
+            update_query+= "coolieType =%s,"
+            update_fields.append(data['coolieRadio'])
+        if 'mamulRadio' in data:
+            update_query+= "mamulType =%s,"
+            update_fields.append(data['mamulRadio'])
+        if 'extraRadio' in data:
+            update_query+= "extraType =%s,"
+            update_fields.append(data['extraRadio'])
+        if 'chitcashRadio' in data:
+            update_query+= "chitcashType =%s,"
+            update_fields.append(data['chitcashRadio'])
+            
+        if 'coolie' in data:
+            update_query+= "coolie =%s,"
+            update_fields.append(data['coolie'])
+        if 'mamul' in data:
+            update_query+= "mamul =%s,"
+            update_fields.append(data['mamul'])
+        if 'extra' in data:
+            update_query+= "extra =%s,"
+            update_fields.append(data['extra'])
+        if 'chitcash' in data:
+            update_query+= "chitcash =%s,"
+            update_fields.append(data['chitcash'])
+            
+        if 'toll' in data:
+            update_query+= "toll =%s,"
+            update_fields.append(data['toll'])
+        if 'wayment' in data:
+            update_query+= "wayment =%s,"
+            update_fields.append(data['wayment'])
+        if 'utrNo' in data:
+            update_query+= "utrNo =%s,"
+            update_fields.append(data['utrNo'])
+        if 'utrDate' in data:
+            update_query+= "utrDate =%s,"
+            update_fields.append(data['utrDate'])
+        if 'ackDate' in data:
+            update_query+= "ackDate =%s,"
+            update_fields.append(data['ackDate'])
+        if 'totalFinalBalance' in data:
+            update_query+= "totalFinalBalance =%s,"
+            update_fields.append(data['totalFinalBalance'])
             
         update_query = update_query.rstrip(', ') + " WHERE invoiceNumber = %s"
 

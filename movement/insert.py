@@ -86,7 +86,7 @@ def movement_insert_data():
         truck_inserted = insert_truck(data['truckNumber'])
 
 
-        insert_query = "INSERT INTO `movement` (`invoiceNumber`, `invoiceNo`,  `acknowledgementNo`, `movementNo`,`branch`, `date`, `truckNumber`, `truckMovementNo`, `party`, `partyid`, `source`,`destination`, `staff`, `transporter`, `transporterid`, `goods`, `quantity`, `rate`, `totalAmount`, `advance`, `balance`, `status`,`bags`,`ActualAmount`,`ownername`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s,%s)"
+        insert_query = "INSERT INTO `movement` (`invoiceNumber`, `invoiceNo`,  `acknowledgementNo`, `movementNo`,`branch`, `date`, `truckNumber`, `truckMovementNo`, `party`, `partyid`, `source`,`destination`, `staff`, `transporter`, `transporterid`, `goods`, `quantity`, `rate`, `totalAmount`, `advance`, `balance`, `status`,`bags`,`ActualAmount`,`ownername`,`coolieRadio`,`mamulRadio`,`chitcashRadio`,`extraRadio`,`coolie`,`mamul`,`chitcash`,`extra`,`toll`,`wayment`,`utrNo`,`utrDate`,`ackDate`,`totalFinalBalance`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         movement_insert_data = (
             data['invoiceNumber'],
             invoiceNo,
@@ -112,7 +112,21 @@ def movement_insert_data():
             data['status'],
             data['bags'],
             data['ActualAmount'],
-            data['ownername']
+            data['ownername'],
+            data['coolieRadio'],
+            data['mamulRadio'],
+            data['chitcashRadio'],
+            data['extraRadio'],
+            data['coolie'],
+            data['mamul'],
+            data['chitcash'],
+            data['extra'],
+            data['toll'],
+            data['wayment'],
+            data['utrNo'],
+            data['utrDate'],
+            data['ackDate'],
+            data['totalFinalBalance']
         )
 
       
