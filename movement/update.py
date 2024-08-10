@@ -55,14 +55,14 @@ def movement_update_data():
         connection = mysql.connector.connect(**db_config)
         cursor = connection.cursor(dictionary=True)
         
-        if data['truckMovementNo'] != "0" and data['truckMovementNo'] != None and data['truckMovementNo'] != "":
+        if str(data['truckMovementNo']).strip() != "0" and data['truckMovementNo'] != None and data['truckMovementNo'] != "":
             check_duplicate="SELECT * FROM movement WHERE  truckMovementNo=%s and invoiceNumber != %s"
             cursor.execute(check_duplicate,tuple([data['truckMovementNo'],data['invoiceNumber']]))   
             result = cursor.fetchall()    
                         
             if len(result):                
                 return jsonify({"message":"Truck Memo number is duplicate"})
-        if data['acknowledgementNo'] != "0" and data['acknowledgementNo'] != None and data['acknowledgementNo'] != "":
+        if str(data['acknowledgementNo']).strip() != "0" and data['acknowledgementNo'] != None and data['acknowledgementNo'] != "":
             check_duplicate="SELECT * FROM movement WHERE  acknowledgementNo=%s and invoiceNumber != %s"
             cursor.execute(check_duplicate,tuple([data['acknowledgementNo'],data['invoiceNumber']]))
             result = cursor.fetchall()
@@ -71,7 +71,7 @@ def movement_update_data():
                 print("2")
                 return jsonify({"message":"Acknowledgement number is duplicate"})   
         print("utr",data['utrNo'])
-        if data['utrNo'] != "0" and data['utrNo'] != None and data['utrNo'] != "":     
+        if str(data['utrNo']).strip() != "0" and data['utrNo'] != None and data['utrNo'] != "":     
             check_duplicate="SELECT * FROM movement WHERE utrNo=%s and invoiceNumber != %s"     
             cursor.execute(check_duplicate,tuple([data['utrNo'],data['invoiceNumber']]))
             result = cursor.fetchall()   
