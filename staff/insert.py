@@ -24,22 +24,22 @@ def staff_insert_data():
         
         insert_query = "INSERT INTO `staff` (`name`, `mobileNumber`, `mobileNo`, `dateOfJoining`,`username`, `password`, `accountNumber`, `accountHolderName`, `ifscCode`, `address`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         staff_insert_data = (
-            data['name'],
-            data['mobileNumber'],
-            data['mobileNo'],                  
-            data['dateOfJoining'],
-            data['username'],
-            data['password'],
-            data['accountNumber'],
-            data['accountHolderName'],
-            data['ifscCode'],
-            data['address']
+            data['name'].strip(),
+            data['mobileNumber'].strip(),
+            data['mobileNo'].strip(),                  
+            data['dateOfJoining'].strip(),
+            data['username'].strip(),
+            data['password'].strip(),
+            data['accountNumber'].strip(),
+            data['accountHolderName'].strip(),
+            data['ifscCode'].strip(),
+            data['address'].strip()
         )
 
         insert_staff = "INSERT INTO `users`(`username`, `password`) VALUES (%s,%s)"
         staff_user_data = (   
-            data['username'],
-            data['password'],
+            data['username'].strip(),
+            data['password'].strip(),
         )
 
 

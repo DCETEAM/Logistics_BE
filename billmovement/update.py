@@ -27,7 +27,7 @@ def billmovement_update_data():
 
         if 'rate' in data:
             update_query += "rate = %s, "
-            update_fields.append(data['rate'])
+            update_fields.append(data['rate'].strip())
        
             
         update_query = update_query.rstrip(', ') + " WHERE id = %s"

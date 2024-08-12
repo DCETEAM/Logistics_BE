@@ -16,8 +16,8 @@ def execute_select_query(query, params=None):
 def login_data():
     try:
         data = request.get_json()
-        username = data.get('username')
-        password = data.get('password')
+        username = data.get('username').strip()
+        password = data.get('password').strip()
         select_query = "SELECT * FROM `users` WHERE `username` = %s AND `password` = %s"
         result = execute_select_query(select_query, (username, password))
         if len(result) == 1:

@@ -92,128 +92,128 @@ def movement_update_data():
 
         if 'invoiceNumber' in data:
             update_query += "invoiceNumber = %s, "
-            update_fields.append(data['invoiceNumber'])
+            update_fields.append(data['invoiceNumber'].strip())
 
         if 'acknowledgementNo' in data:
             update_query += "acknowledgementNo = %s, "
-            update_fields.append(data['acknowledgementNo'])
+            update_fields.append(data['acknowledgementNo'].strip())
 
         if 'movementNo' in data:
             update_query += "movementNo = %s, "
-            update_fields.append(data['movementNo'])
+            update_fields.append(data['movementNo'].strip())
 
         if 'truckMovementNo' in data:
             update_query += "truckMovementNo = %s, "
-            update_fields.append(data['truckMovementNo'])
+            update_fields.append(data['truckMovementNo'].strip())
 
         if 'party' in data:
             update_query += "party = %s, "
-            update_fields.append(data['party'])
+            update_fields.append(data['party'].strip())
 
         if 'source' in data:
             update_query += "source = %s, "
-            update_fields.append(data['source'])
+            update_fields.append(data['source'].strip())
 
         if 'destination' in data:
             update_query += "destination = %s, "
-            update_fields.append(data['destination'])
+            update_fields.append(data['destination'].strip())
 
         if 'staff' in data:
             update_query += "staff = %s, "
-            update_fields.append(data['staff'])
+            update_fields.append(data['staff'].strip())
 
         if 'transporter' in data:
             update_query += "transporter = %s, "
-            update_fields.append(data['transporter'])
+            update_fields.append(data['transporter'].strip())
 
         if 'goods' in data:
             update_query += "goods = %s, "
-            update_fields.append(data['goods'])
+            update_fields.append(data['goods'].strip())
 
         if 'goodsType' in data:
             update_query += "goodsType = %s, "
-            update_fields.append(data['goodsType'])
+            update_fields.append(data['goodsType'].strip())
 
         if 'quantity' in data:
             update_query += "quantity = %s, "
-            update_fields.append(data['quantity'])
+            update_fields.append(data['quantity'].strip())
 
         if 'rate' in data:
             update_query += "rate = %s, "
-            update_fields.append(data['rate'])
+            update_fields.append(data['rate'].strip())
 
         if 'totalAmount' in data:
             update_query += "totalAmount = %s, "
-            update_fields.append(data['totalAmount'])
+            update_fields.append(data['totalAmount'].strip())
 
         if 'advance' in data:
             update_query += "advance = %s, "
-            update_fields.append(data['advance'])
+            update_fields.append(data['advance'].strip())
 
         if 'balance' in data:
             update_query += "balance = %s, "
-            update_fields.append(data['balance'])
+            update_fields.append(data['balance'].strip())
 
         if 'branch' in data:
             update_query += "branch = %s, "
-            update_fields.append(data['branch'])
+            update_fields.append(data['branch'].strip())
 
         if 'date' in data:
             update_query += "date = %s, "
-            update_fields.append(data['date'])
+            update_fields.append(data['date'].strip())
 
         if 'ownername' in data:
             update_query += "ownername = %s, "
-            update_fields.append(data['ownername'])
+            update_fields.append(data['ownername'].strip())
             
         if 'coolieRadio' in data:
             update_query+= "coolieType =%s,"
-            update_fields.append(data['coolieRadio'])
+            update_fields.append(data['coolieRadio'].strip())
         if 'mamulRadio' in data:
             update_query+= "mamulType =%s,"
-            update_fields.append(data['mamulRadio'])
+            update_fields.append(data['mamulRadio'].strip())
         if 'extraRadio' in data:
             update_query+= "extraType =%s,"
-            update_fields.append(data['extraRadio'])
+            update_fields.append(data['extraRadio'].strip())
         if 'chitcashRadio' in data:
             update_query+= "chitcashType =%s,"
-            update_fields.append(data['chitcashRadio'])
+            update_fields.append(data['chitcashRadio'].strip())
             
         if 'coolie' in data:
             update_query+= "coolie =%s,"
-            update_fields.append(data['coolie'])
+            update_fields.append(data['coolie'].strip())
         if 'mamul' in data:
             update_query+= "mamul =%s,"
-            update_fields.append(data['mamul'])
+            update_fields.append(data['mamul'].strip())
         if 'extra' in data:
             update_query+= "extra =%s,"
-            update_fields.append(data['extra'])
+            update_fields.append(data['extra'].strip())
         if 'chitcash' in data:
             update_query+= "chitcash =%s,"
-            update_fields.append(data['chitcash'])
+            update_fields.append(data['chitcash'].strip())
             
         if 'toll' in data:
             update_query+= "toll =%s,"
-            update_fields.append(data['toll'])
+            update_fields.append(data['toll'].strip())
         if 'wayment' in data:
             update_query+= "wayment =%s,"
-            update_fields.append(data['wayment'])
+            update_fields.append(data['wayment'].strip())
         if 'utrNo' in data:
             update_query+= "utrNo =%s,"
-            update_fields.append(data['utrNo'])
+            update_fields.append(data['utrNo'].strip())
         if 'utrDate' in data:
             update_query+= "utrDate =%s,"
-            update_fields.append(data['utrDate'])
+            update_fields.append(data['utrDate'].strip())
         if 'ackDate' in data:
             update_query+= "ackDate =%s,"
-            update_fields.append(data['ackDate'])
+            update_fields.append(data['ackDate'].strip())
         if 'totalFinalBalance' in data:
             update_query+= "totalFinalBalance =%s,"
-            update_fields.append(data['totalFinalBalance'])
+            update_fields.append(data['totalFinalBalance'].strip())
             
         update_query = update_query.rstrip(', ') + " WHERE invoiceNumber = %s"
 
-        update_fields.append(data['invoiceNumber'])
+        update_fields.append(data['invoiceNumber'].strip())
 
         execute_update_query(update_query, tuple(update_fields))
         return jsonify({'message': 'Data updated successfully'})

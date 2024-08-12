@@ -23,15 +23,15 @@ def goods_update_data():
 
         if 'name' in data:
             update_query += "name = %s, "
-            update_fields.append(data['name'])
+            update_fields.append(data['name'].strip())
 
         if 'unit' in data:
             update_query += "unit = %s, "
-            update_fields.append(data['unit'])
+            update_fields.append(data['unit'].strip())
 
         if 'bagbox' in data:
             update_query += "bagbox = %s, "
-            update_fields.append(data['bagbox'])
+            update_fields.append(data['bagbox'].strip())
         
             
         update_query = update_query.rstrip(', ') + " WHERE id = %s"  # Update based on ID

@@ -25,7 +25,7 @@ def bill_insert_data():
         connection = mysql.connector.connect(**db_config)
         cursor = connection.cursor()
 
-        formatted_date = data['billNumber']
+        formatted_date = data['billNumber'].strip()
         future_bills_query = "SELECT date1, billNumber FROM localbill WHERE billNumber >= %s ORDER BY billNumber DESC"
         cursor.execute(future_bills_query, (formatted_date,))
         future_bills = cursor.fetchall()
@@ -49,24 +49,24 @@ def bill_insert_data():
 
         insert_query = "INSERT INTO `localbill` (`billNumber`, `movementNo`, `branch`, `date1`, `truckNumber`, `truckMovementNo`, `party`, `source`, `destination`, `staff`, `transporter`, `goods`, `goodsType`, `quantity`, `rate`, `totalAmount`, `advance`, `balance`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         bill_insert_data = (
-            data['billNumber'],
-            data['movementNo'],
-            data['branch'], 
-            data['date1'], 
-            data['truckNumber'],
-            data['truckMovementNo'],
-            data['party'],
-            data['source'],
-            data['destination'],
-            data['staff'],
-            data['transporter'],
-            data['goods'],
-            data['goodsType'],
-            data['quantity'],
-            data['rate'],
-            data['totalAmount'],
-            data['advance'],
-            data['balance'],
+            data['billNumber'].strip(),
+            data['movementNo'].strip(),
+            data['branch'].strip(), 
+            data['date1'].strip(), 
+            data['truckNumber'].strip(),
+            data['truckMovementNo'].strip(),
+            data['party'].strip(),
+            data['source'].strip(),
+            data['destination'].strip(),
+            data['staff'].strip(),
+            data['transporter'].strip(),
+            data['goods'].strip(),
+            data['goodsType'].strip(),
+            data['quantity'].strip(),
+            data['rate'].strip(),
+            data['totalAmount'].strip(),
+            data['advance'].strip(),
+            data['balance'].strip(),
         )
         result = execute_insert_query(insert_query, bill_insert_data)
 

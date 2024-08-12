@@ -76,18 +76,18 @@ def insert_bill_record(bill_number, movement):
      INSERT INTO `bill`( `date`, `truck`, `ackno`, `truckmo`, `party`, `source`, `destination`, `distanceKm`, `rate`, `quantity`, `billnum`,`ownername`) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
     """
     data = (
-        movement['date'],
-        movement['truckNumber'],
-        movement['acknowledgementNo'],
-        movement['truckMovementNo'],
-        movement['party'],
-        movement['source'],
-        movement['destination'],
-        movement['diskm'],
-        movement['rate'],
-        movement['quantity'],
+        movement['date'].strip(),
+        movement['truckNumber'].strip(),
+        movement['acknowledgementNo'].strip(),
+        movement['truckMovementNo'].strip(),
+        movement['party'].strip(),
+        movement['source'].strip(),
+        movement['destination'].strip(),
+        movement['diskm'].strip(),
+        movement['rate'].strip(),
+        movement['quantity'].strip(),
         bill_number,
-        movement['ownername']
+        movement['ownername'].strip()
     )
     execute_insert_query(insert_query, data)
 

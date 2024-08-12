@@ -24,15 +24,15 @@ def station_update_data():
 
         if 'sfrom' in data:
             update_query += "source = %s, "
-            update_fields.append(data['sfrom'])
+            update_fields.append(data['sfrom'].strip())
 
         if 'sdis' in data:
             update_query += "destination	 = %s, "
-            update_fields.append(data['sdis'])
+            update_fields.append(data['sdis'].strip())
 
         if 'diskm' in data:
             update_query += "diskm= %s, "
-            update_fields.append(data['diskm'])
+            update_fields.append(data['diskm'].strip())
 
         if 'details' in data:
             details_json = json.dumps(data['details'])

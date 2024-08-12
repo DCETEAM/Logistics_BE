@@ -24,9 +24,9 @@ def station_insert_data():
         
         insert_query = "INSERT INTO `station`( `source`, `destination`, `diskm`, `details`)  VALUES (%s,%s,%s,%s)"  
         city_insert_data = (
-            data['sfrom'],
-            data['sdis'],
-            data['diskm'],
+            data['sfrom'].strip(),
+            data['sdis'].strip(),
+            data['diskm'].strip(),
             data['details'],
         )
         result = execute_insert_query(insert_query, city_insert_data)

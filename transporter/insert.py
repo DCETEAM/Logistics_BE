@@ -24,16 +24,16 @@ def transporter_insert_data():
         
         insert_query = "INSERT INTO `transporter` (`name`, `mobileNumber`, `dateOfJoining`, `location`, `bankName`, `accountNumber`, `accountHolderName`, `ifscCode`, `panNumber`, `address`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         transporter_insert_data = (
-            data['name'],
-            data['mobileNumber'],
-            data['dateOfJoining'],
-            data['location'], 
-            data['bankName'], 
-            data['accountNumber'],
-            data['accountHolderName'],
-            data['ifscCode'],
-            data['panNumber'],
-            data['address']
+            data['name'].strip(),
+            data['mobileNumber'].strip(),
+            data['dateOfJoining'].strip(),
+            data['location'].strip(), 
+            data['bankName'].strip(), 
+            data['accountNumber'].strip(),
+            data['accountHolderName'].strip(),
+            data['ifscCode'].strip(),
+            data['panNumber'].strip(),
+            data['address'].strip()
         )
         result = execute_insert_query(insert_query, transporter_insert_data)
         return jsonify({'message': "Insert Success."})

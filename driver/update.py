@@ -23,63 +23,63 @@ def driver_update_data():
 
         if 'mobileNumber' in data:
             update_query += "mobileNumber = %s, "
-            update_fields.append(data['mobileNumber'])
+            update_fields.append(data['mobileNumber'].strip())
 
         if 'licenseNumber' in data:
             update_query += "licenseNumber = %s, "
-            update_fields.append(data['licenseNumber'])
+            update_fields.append(data['licenseNumber'].strip())
 
         if 'phoneNo' in data:
             update_query += "phoneNo = %s, "
-            update_fields.append(data['phoneNo'])
+            update_fields.append(data['phoneNo'].strip())
 
         if 'name' in data:
             update_query += "name = %s, "
-            update_fields.append(data['name'])
+            update_fields.append(data['name'].strip())
 
         if 'accountNumber' in data:
             update_query += "accountNumber = %s, "
-            update_fields.append(data['accountNumber'])
+            update_fields.append(data['accountNumber'].strip())
 
         if 'dateOfBirth' in data:
             update_query += "dateOfBirth = %s, "
-            update_fields.append(data['dateOfBirth'])
+            update_fields.append(data['dateOfBirth'].strip())
 
         if 'mobileNo' in data:
             update_query += "mobileNo = %s, "
-            update_fields.append(data['mobileNo'])
+            update_fields.append(data['mobileNo'].strip())
       
         if 'licenseIssueDate' in data:
             update_query += "licenseIssueDate = %s, "
-            update_fields.append(data['licenseIssueDate'])
+            update_fields.append(data['licenseIssueDate'].strip())
 
         if 'licenseExpiryDate' in data:
             update_query += "licenseExpiryDate = %s, "
-            update_fields.append(data['licenseExpiryDate'])
+            update_fields.append(data['licenseExpiryDate'].strip())
 
         if 'dateOfJoining' in data:
             update_query += "dateOfJoining = %s, "
-            update_fields.append(data['dateOfJoining'])
+            update_fields.append(data['dateOfJoining'].strip())
 
         if 'branch' in data:
             update_query += "branch = %s, "
-            update_fields.append(data['branch'])
+            update_fields.append(data['branch'].strip())
 
         if 'referredBy' in data:
             update_query += "referredBy = %s, "
-            update_fields.append(data['referredBy'])
+            update_fields.append(data['referredBy'].strip())
 
         if 'accountHolderName' in data:
             update_query += "accountHolderName = %s, "
-            update_fields.append(data['accountHolderName'])
+            update_fields.append(data['accountHolderName'].strip())
 
         if 'ifscCode' in data:
             update_query += "ifscCode = %s, "
-            update_fields.append(data['ifscCode'])
+            update_fields.append(data['ifscCode'].strip())
 
         if 'address' in data:
             update_query += "address = %s, "
-            update_fields.append(data['address'])            
+            update_fields.append(data['address'].strip())            
 
 
 

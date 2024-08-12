@@ -23,71 +23,71 @@ def bill_update_data():
 
         if 'billNumber' in data:
             update_query += "billNumber = %s, "
-            update_fields.append(data['billNumber'])
+            update_fields.append(data['billNumber'].strip())
 
         if 'movementNo' in data:
             update_query += "movementNo = %s, "
-            update_fields.append(data['movementNo'])
+            update_fields.append(data['movementNo'].strip())
 
         if 'truckMovementNo' in data:
             update_query += "truckMovementNo = %s, "
-            update_fields.append(data['truckMovementNo'])
+            update_fields.append(data['truckMovementNo'].strip())
 
         if 'party' in data:
             update_query += "party = %s, "
-            update_fields.append(data['party'])
+            update_fields.append(data['party'].strip())
 
         if 'source' in data:
             update_query += "source = %s, "
-            update_fields.append(data['source'])
+            update_fields.append(data['source'].strip())
 
         if 'destination' in data:
             update_query += "destination = %s, "
-            update_fields.append(data['destination'])
+            update_fields.append(data['destination'].strip())
 
         if 'staff' in data:
             update_query += "staff = %s, "
-            update_fields.append(data['staff'])
+            update_fields.append(data['staff'].strip())
 
         if 'transporter' in data:
             update_query += "transporter = %s, "
-            update_fields.append(data['transporter'])
+            update_fields.append(data['transporter'].strip())
 
         if 'goods' in data:
             update_query += "goods = %s, "
-            update_fields.append(data['goods'])
+            update_fields.append(data['goods'].strip())
 
         if 'goodsType' in data:
             update_query += "goodsType = %s, "
-            update_fields.append(data['goodsType'])
+            update_fields.append(data['goodsType'].strip())
 
         if 'quantity' in data:
             update_query += "quantity = %s, "
-            update_fields.append(data['quantity'])
+            update_fields.append(data['quantity'].strip())
 
         if 'rate' in data:
             update_query += "rate = %s, "
-            update_fields.append(data['rate'])
+            update_fields.append(data['rate'].strip())
 
         if 'totalAmount' in data:
             update_query += "totalAmount = %s, "
-            update_fields.append(data['totalAmount'])
+            update_fields.append(data['totalAmount'].strip())
 
         if 'advance' in data:
             update_query += "advance = %s, "
-            update_fields.append(data['advance'])
+            update_fields.append(data['advance'].strip())
 
         if 'balance' in data:
             update_query += "balance = %s, "
-            update_fields.append(data['balance'])
+            update_fields.append(data['balance'].strip())
 
         if 'branch' in data:
             update_query += "branch = %s, "
-            update_fields.append(data['branch'])
+            update_fields.append(data['branch'].strip())
 
         if 'date1' in data:
             update_query += "date1 = %s, "
-            update_fields.append(data['date1'])
+            update_fields.append(data['date1'].strip())
             
         update_query = update_query.rstrip(', ') + " WHERE id = %s"
 

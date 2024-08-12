@@ -27,7 +27,7 @@ def owner_update_data():
 
         if 'name' in data:
             update_query += "name = %s, "
-            update_fields.append(data['name'])
+            update_fields.append(data['name'].strip())
 
      
         update_query = update_query.rstrip(', ') + " WHERE id = %s"

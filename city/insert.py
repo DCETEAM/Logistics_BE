@@ -24,7 +24,7 @@ def city_insert_data():
         
         insert_query = "INSERT INTO `city` (`name`) VALUES (%s)"  # Adjusted SQL query
         city_insert_data = (
-            data['name'],
+            data['name'].strip(),
           
         )
         result = execute_insert_query(insert_query, city_insert_data)

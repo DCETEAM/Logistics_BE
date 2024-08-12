@@ -23,27 +23,27 @@ def accounts_update_data():
 
         if 'accountNumber' in data:
             update_query += "accountNumber = %s, "
-            update_fields.append(data['accountNumber'])
+            update_fields.append(data['accountNumber'].strip())
 
         if 'referenceName' in data:
             update_query += "referenceName = %s, "
-            update_fields.append(data['referenceName'])
+            update_fields.append(data['referenceName'].strip())
 
         if 'accountHolderName' in data:
             update_query += "accountHolderName = %s, "
-            update_fields.append(data['accountHolderName'])
+            update_fields.append(data['accountHolderName'].strip())
 
         if 'ifscCode' in data:
             update_query += "ifscCode = %s, "
-            update_fields.append(data['ifscCode'])
+            update_fields.append(data['ifscCode'].strip())
 
         if 'bankName' in data:
             update_query += "bankName = %s, "
-            update_fields.append(data['bankName'])
+            update_fields.append(data['bankName'].strip())
 
         if 'panNumber' in data:
             update_query += "panNumber = %s, "
-            update_fields.append(data['panNumber'])
+            update_fields.append(data['panNumber'].strip())
 
             
         update_query = update_query.rstrip(', ') + " WHERE id = %s"

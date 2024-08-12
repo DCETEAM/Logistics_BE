@@ -23,35 +23,35 @@ def truck_update_data():
 
         if 'truckNumber' in data:
             update_query += "truckNumber = %s, "
-            update_fields.append(data['truckNumber'])
+            update_fields.append(data['truckNumber'].strip())
 
         if 'chassisNumber' in data:
             update_query += "chassisNumber = %s, "
-            update_fields.append(data['chassisNumber'])
+            update_fields.append(data['chassisNumber'].strip())
 
         if 'NPEXD' in data:
             update_query += "NPEXD = %s, "
-            update_fields.append(data['NPEXD'])
+            update_fields.append(data['NPEXD'].strip())
 
         if 'LPEXD' in data:
             update_query += "LPEXD = %s, "
-            update_fields.append(data['LPEXD'])
+            update_fields.append(data['LPEXD'].strip())
 
         if 'fcExpiryDate' in data:
             update_query += "fcExpiryDate = %s, "
-            update_fields.append(data['fcExpiryDate'])
+            update_fields.append(data['fcExpiryDate'].strip())
 
         if 'taxExpiryDate' in data:
             update_query += "taxExpiryDate = %s, "
-            update_fields.append(data['taxExpiryDate'])
+            update_fields.append(data['taxExpiryDate'].strip())
 
         if 'insuranceExpiryDate' in data:
             update_query += "insuranceExpiryDate = %s, "
-            update_fields.append(data['insuranceExpiryDate'])
+            update_fields.append(data['insuranceExpiryDate'].strip())
 
         if 'registrationDate' in data:
             update_query += "registrationDate = %s, "
-            update_fields.append(data['registrationDate'])    
+            update_fields.append(data['registrationDate'].strip())    
 
             
         update_query = update_query.rstrip(', ') + " WHERE id = %s"

@@ -24,21 +24,21 @@ def driver_insert_data():
         
         insert_query = "INSERT INTO `driver` (`name`, `mobileNumber`, `mobileNo`, `phoneNo`, `dateOfBirth`,`licenseNumber`, `licenseIssueDate`, `licenseExpiryDate`, `dateOfJoining`, `branch`, `referredBy`, `accountNumber`, `accountHolderName`, `ifscCode`, `address`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         driver_insert_data = (
-            data['name'],
-            data['mobileNumber'],
-            data['mobileNo'], 
-            data['phoneNo'], 
-            data['dateOfBirth'],
-            data['licenseNumber'],  
-            data['licenseIssueDate'],
-            data['licenseExpiryDate'],
-            data['dateOfJoining'],
-            data['branch'],
-            data['referredBy'],
-            data['accountNumber'],
-            data['accountHolderName'],
-            data['ifscCode'],
-            data['address']
+            data['name'].strip(),
+            data['mobileNumber'].strip(),
+            data['mobileNo'].strip(), 
+            data['phoneNo'].strip(), 
+            data['dateOfBirth'].strip(),
+            data['licenseNumber'].strip(),  
+            data['licenseIssueDate'].strip(),
+            data['licenseExpiryDate'].strip(),
+            data['dateOfJoining'].strip(),
+            data['branch'].strip(),
+            data['referredBy'].strip(),
+            data['accountNumber'].strip(),
+            data['accountHolderName'].strip(),
+            data['ifscCode'].strip(),
+            data['address'].strip()
         )
         result = execute_insert_query(insert_query, driver_insert_data)
         return jsonify({'message': "Insert Success."})

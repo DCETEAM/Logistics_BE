@@ -24,9 +24,9 @@ def goods_insert_data():
         
         insert_query = "INSERT INTO `goods` (`name`,`unit`,`bagbox`) VALUES ( %s,%s,%s)"
         goods_insert_data = (
-            data['name'],
-            data['unit'],
-            data['bagbox'],
+            data['name'].strip(),
+            data['unit'].strip(),
+            data['bagbox'].strip(),
         )
         result = execute_insert_query(insert_query, goods_insert_data)
         return jsonify({'message': "Insert Success."})

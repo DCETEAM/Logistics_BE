@@ -24,12 +24,13 @@ def accounts_insert_data():
         
         insert_query = "INSERT INTO `accounts` (`referenceName`, `bankName`, `accountNumber`, `accountHolderName`, `ifscCode`, `panNumber`) VALUES (%s, %s, %s, %s, %s, %s)"
         accounts_insert_data = (
-            data['referenceName'], 
-            data['bankName'], 
-            data['accountNumber'],
-            data['accountHolderName'],
-            data['ifscCode'],
-            data['panNumber']
+            data['referenceName'].strip(),
+            data['bankName'].strip(),
+            data['accountNumber'].strip(),
+            data['accountHolderName'].strip(),
+            data['ifscCode'].strip(),
+            data['panNumber'].strip()
+
 
         )
         result = execute_insert_query(insert_query, accounts_insert_data)
