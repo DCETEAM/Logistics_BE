@@ -38,7 +38,7 @@ def execute_update_query(query):
         connection.close()
 
 def update_bill_number(new_bill_number, invoice_number):
-    update_query = f"UPDATE movement SET billNumber = {new_bill_number} WHERE invoiceNo = {invoice_number}"
+    update_query = f"UPDATE movement SET billNumber = '{new_bill_number}' WHERE invoiceNo = {invoice_number}"
     print("Updating bill number with query:", update_query)
 
     execute_update_query(update_query)
@@ -62,16 +62,16 @@ def insert_bill_record(bill_number, movement):
      INSERT INTO `bill`( `date`, `truck`, `ackno`, `truckmo`, `party`, `source`, `destination`, `distanceKm`, `rate`, `quantity`, `billnum`) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
     """
     data = (
-        movement['date'].strip(),
-        movement['truckNumber'].strip(),
-        movement['acknowledgementNo'].strip(),
-        movement['truckMovementNo'].strip(),
-        movement['party'].strip(),
-        movement['source'].strip(),
-        movement['destination'].strip(),
-        movement['diskm'].strip(),
-        movement['rate'].strip(),
-        movement['quantity'].strip(),
+        movement['date'] ,
+        movement['truckNumber'] ,
+        movement['acknowledgementNo'] ,
+        movement['truckMovementNo'] ,
+        movement['party'] ,
+        movement['source'] ,
+        movement['destination'] ,
+        movement['diskm'] ,
+        movement['rate'] ,
+        movement['quantity'] ,
         bill_number,
     )
     execute_insert_query(insert_query, data)
@@ -97,7 +97,7 @@ def movement_addexisting_data():
             return jsonify({'error': 'No movements selected'}), 400
 
         new_bill_number = request.json.get('billNumber')
-        new_bill_number = new_bill_number.strip()
+        new_bill_number = new_bill_number 
         movements_data = []
         station_data = get_all_station_data()
 

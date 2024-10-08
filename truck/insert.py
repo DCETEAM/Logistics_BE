@@ -24,14 +24,14 @@ def truck_insert_data():
         
         insert_query = "INSERT INTO `truck` (`truckNumber`, `registrationDate`, `chassisNumber`, `insuranceExpiryDate`,`taxExpiryDate`, `fcExpiryDate`, `LPEXD`, `NPEXD`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
         truck_insert_data = (
-            data['truckNumber'].strip(),
-            data['registrationDate'].strip(),
-            data['chassisNumber'].strip(),                  
-            data['insuranceExpiryDate'].strip(),
-            data['taxExpiryDate'].strip(),
-            data['fcExpiryDate'].strip(),
-            data['LPEXD'].strip(),
-            data['NPEXD'].strip(),
+            data['truckNumber'],
+            data['registrationDate'],
+            data['chassisNumber'],                  
+            data['insuranceExpiryDate'],
+            data['taxExpiryDate'],
+            data['fcExpiryDate'],
+            data['LPEXD'],
+            data['NPEXD'],
         )
         result = execute_insert_query(insert_query, truck_insert_data)
         return jsonify({'message': "Insert Success."})

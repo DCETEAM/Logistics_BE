@@ -76,18 +76,18 @@ def insert_bill_record(bill_number, movement):
      INSERT INTO `bill`( `date`, `truck`, `ackno`, `truckmo`, `party`, `source`, `destination`, `distanceKm`, `rate`, `quantity`, `billnum`,`ownername`) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
     """
     data = (
-        movement['date'].strip(),
-        movement['truckNumber'].strip(),
-        movement['acknowledgementNo'].strip(),
-        movement['truckMovementNo'].strip(),
-        movement['party'].strip(),
-        movement['source'].strip(),
-        movement['destination'].strip(),
-        movement['diskm'].strip(),
-        movement['rate'].strip(),
-        movement['quantity'].strip(),
+        movement['date'] ,
+        movement['truckNumber'] ,
+        movement['acknowledgementNo'] ,
+        movement['truckMovementNo'] ,
+        movement['party'] ,
+        movement['source'] ,
+        movement['destination'] ,
+        movement['diskm'] ,
+        movement['rate'] ,
+        movement['quantity'] ,
         bill_number,
-        movement['ownername'].strip()
+        movement['ownername'] 
     )
     execute_insert_query(insert_query, data)
 
@@ -108,23 +108,27 @@ def match_station_and_movement(movement, station_data):
     
 def movement_generate_data():
     try:
+        # Get the selected movements and bill number from the request
         selected_movements = request.json.get('selectedMovements')
+        bill_number = request.json.get('billNumber')  # Get the provided bill number
+
         if not selected_movements:
             return jsonify({'error': 'No movements selected'}), 400
         
-        new_bill_number = get_current_bill_number()
+        if not bill_number:
+            return jsonify({'error': 'Bill number is required'}), 400
+        
         movements_data = []
         station_data = get_all_station_data()
 
-        
         for movement in selected_movements:
             invoice_parts = movement.split('/')
             invoiceNo = invoice_parts[0]
 
-            update_bill_number(new_bill_number, invoiceNo)
+            # Update bill number in the movement table
+            update_bill_number(bill_number, invoiceNo)
 
-
-             # Get movement details
+            # Get movement details
             movement_data = get_movement_by_invoice_number(invoiceNo)
             for move in movement_data:
                 rate, diskm = match_station_and_movement(move, station_data)
@@ -136,10 +140,13 @@ def movement_generate_data():
             
             # Insert each movement record individually
             for move in movement_data:
-                insert_bill_record(new_bill_number, move)
+                insert_bill_record(bill_number, move)
 
-        return jsonify({'billNumber': new_bill_number, 'movements': movements_data})
+        return jsonify({'billNumber': bill_number, 'movements': movements_data})
     except Exception as e:
-        print("Error:", e)
+        print("Error:", e)  # Enhanced logging for debugging
+        return jsonify({'error': 'Error generating bill. Please try again', 'details': str(e)}), 500
 
-        return jsonify({'error': str(e)}), 500
+
+if __name__ == "__main__":
+    app.run(debug=False)
