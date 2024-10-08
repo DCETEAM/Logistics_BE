@@ -208,12 +208,18 @@ def movement_update_data():
         if 'utrDate' in data:
             update_query+= "utrDate =%s,"
             update_fields.append(data['utrDate'])
-        if 'ackDate' in data:
-            update_query+= "ackDate =%s,"
-            update_fields.append(data['ackDate'])
+        
+        if 'acknowledgementDate' in data:
+          ack_date = data['acknowledgementDate']
+          update_query += "ackDate = %s, "
+          update_fields.append(ack_date)
+
         if 'totalFinalBalance' in data:
             update_query+= "totalFinalBalance =%s,"
             update_fields.append(data['totalFinalBalance'])
+        if 'bags' in data:
+            update_query += "bags = %s, "
+            update_fields.append(data['bags'])
             
         update_query = update_query.rstrip(', ') + " WHERE invoiceNumber = %s"
 

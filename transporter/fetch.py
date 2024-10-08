@@ -14,7 +14,7 @@ def execute_select_query(query):
         cursor.close()
         connection.close()
 def transporter_get_data():
-    select_query = "SELECT * FROM transporter"
+    select_query = "SELECT * FROM transporter ORDER BY name ASC"
     
     try:
         result = execute_select_query(select_query)
