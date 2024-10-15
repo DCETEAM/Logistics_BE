@@ -9,7 +9,7 @@ def execute_insert_query(query, data):
     try:
         cursor.execute(query, data)
         connection.commit()
-        return result
+        return cursor.lastrowid
     except Exception as e:
         connection.rollback()
         raise e
@@ -192,8 +192,8 @@ def movement_insert_data():
         )
 
         # Execute the INSERT query
-        result = execute_insert_query(insert_query, movement_insert_data)
-        return jsonify({'message': "Insert Success.", 'movement_id': result}), 201  # Return appropriate HTTP status code and movement ID
+        movement_id = execute_insert_query(insert_query, movement_insert_data)
+        return jsonify({'message': "Movement added Successfully", 'movement_id': movement_id}), 201  # Created
        
     except Exception as e:
         print("Error inserting data:", e) 
