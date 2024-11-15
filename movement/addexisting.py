@@ -59,7 +59,7 @@ def parse_details(details):
 
 def insert_bill_record(bill_number, movement):
     insert_query = """
-     INSERT INTO `bill`( `date`, `truck`, `ackno`, `truckmo`, `party`, `source`, `destination`, `distanceKm`, `rate`, `quantity`, `billnum`) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+     INSERT INTO `bill`( `date`, `truck`, `ackno`, `truckmo`, `party`, `source`, `destination`, `distanceKm`, `rate`, `quantity`, `billnum`,invoiceNumber) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
     """
     data = (
         movement['date'] ,
@@ -73,6 +73,7 @@ def insert_bill_record(bill_number, movement):
         movement['rate'] ,
         movement['quantity'] ,
         bill_number,
+        movement['invoiceNo'],
     )
     execute_insert_query(insert_query, data)
 
