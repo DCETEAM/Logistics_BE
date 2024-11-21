@@ -3,12 +3,15 @@ import json
 from flask import jsonify, request
 from dbconfig import db_config
 
-def execute_select_query(query):
+def execute_select_query(query, data=None):
     connection = mysql.connector.connect(**db_config)
     cursor = connection.cursor(dictionary=True)
 
     try:
-        cursor.execute(query)
+        if data:
+            cursor.execute(query, data)
+        else:
+            cursor.execute(query)
         result = cursor.fetchall()
         return result
     finally:
@@ -58,8 +61,37 @@ def parse_details(details):
         return []
 
 def insert_bill_record(bill_number, movement):
+    # Check if the record already exists (excluding billNumber)
+    check_query = """
+    SELECT COUNT(*) FROM `bill` 
+    WHERE `date` = %s AND `truck` = %s AND `ackno` = %s AND `truckmo` = %s 
+    AND `party` = %s AND `source` = %s AND `destination` = %s 
+    AND `distanceKm` = %s AND `rate` = %s AND `quantity` = %s 
+    AND `invoiceNumber` = %s
+    """
+    data_to_check = (
+        movement['date'],
+        movement['truckNumber'],
+        movement['acknowledgementNo'],
+        movement['truckMovementNo'],
+        movement['party'],
+        movement['source'],
+        movement['destination'],
+        movement['diskm'],
+        movement['rate'],
+        movement['quantity'],
+        movement['invoiceNo']
+    )
+
+    existing_record = execute_select_query(check_query, data_to_check)
+    
+    if existing_record[0]['COUNT(*)'] > 0:
+        print("Duplicate entry found for movement (excluding billNumber), skipping insertion.")
+        return
+
+    # Proceed with insertion if no duplicate
     insert_query = """
-     INSERT INTO `bill`( `date`, `truck`, `ackno`, `truckmo`, `party`, `source`, `destination`, `distanceKm`, `rate`, `quantity`, `billnum`) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+     INSERT INTO `bill`( `date`, `truck`, `ackno`, `truckmo`, `party`, `source`, `destination`, `distanceKm`, `rate`, `quantity`, `billnum`, invoiceNumber) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
     """
     data = (
         movement['date'] ,
@@ -73,6 +105,7 @@ def insert_bill_record(bill_number, movement):
         movement['rate'] ,
         movement['quantity'] ,
         bill_number,
+        movement['invoiceNo'],
     )
     execute_insert_query(insert_query, data)
 
