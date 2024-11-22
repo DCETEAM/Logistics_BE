@@ -61,6 +61,13 @@ def parse_details(details):
         return []
 
 def insert_bill_record(bill_number, movement):
+    if 'ownername' in movement:
+        owner_name = movement['ownername']
+        print(owner_name)
+    else:
+        owner_name = "Unknown" 
+        print(owner_name) 
+    print(movement)
     # Check if the record already exists (excluding billNumber)
     check_query = """
     SELECT COUNT(*) FROM `bill` 
@@ -91,7 +98,7 @@ def insert_bill_record(bill_number, movement):
 
     # Proceed with insertion if no duplicate
     insert_query = """
-     INSERT INTO `bill`( `date`, `truck`, `ackno`, `truckmo`, `party`, `source`, `destination`, `distanceKm`, `rate`, `quantity`, `billnum`, invoiceNumber) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+     INSERT INTO `bill`( `date`, `truck`, `ackno`, `truckmo`, `party`, `source`, `destination`, `distanceKm`, `rate`, `quantity`, `billnum`, invoiceNumber, `ownername`) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
     """
     data = (
         movement['date'] ,
@@ -106,6 +113,7 @@ def insert_bill_record(bill_number, movement):
         movement['quantity'] ,
         bill_number,
         movement['invoiceNo'],
+        owner_name,
     )
     execute_insert_query(insert_query, data)
 
