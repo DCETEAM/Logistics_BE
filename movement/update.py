@@ -209,8 +209,8 @@ def movement_update_data():
             update_query+= "utrDate =%s,"
             update_fields.append(data['utrDate'])
         
-        if 'acknowledgementDate' in data:
-          ack_date = data['acknowledgementDate']
+        if 'ackDate' in data:
+          ack_date = data['ackDate']
           update_query += "ackDate = %s, "
           update_fields.append(ack_date)
 
